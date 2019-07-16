@@ -3,7 +3,8 @@
 
 using namespace std;
 
-void Bubblesort(vector<int > nums,int length);
+void Bubblesort(vector<int >& nums,int length);
+void Bubblesort1(vector<int >& nums, int length);
 
 int main()
 {
@@ -15,20 +16,51 @@ int main()
 	return 0;
 }
 
-void Bubblesort(vector<int > nums,int length)
+
+/******************************
+名称：没做优化的冒泡排序
+时间复杂度：O(n^2)
+空间复杂度：O(1)
+稳定性：稳定
+*******************************/
+
+void Bubblesort(vector<int >& nums,int length)
 {
 	if(nums.size()<2||length<2) return;
 	for(int i=0;i<length-1;i++)
 	{
-		for(int j=i+1;j<length;j++)
+		for (int j = 0; j < length-1-i; j++)
 		{
-			if(nums[j]<nums[i])
+			if (nums[j+1] < nums[j])
 			{
-				int temp=nums[i];
-				nums[i]=nums[j];
-				nums[j]=temp;
+				swap(nums[j], nums[j + 1]);
 			}
 		}
 	}	
 }
 
+
+/******************************
+名称：优化的冒泡排序
+时间复杂度：O(n)
+空间复杂度：O(1)
+稳定性：稳定
+*******************************/
+
+void Bubblesort1(vector<int >& nums, int length)
+{
+	if (nums.size() < 2 || length < 2) return;
+	bool didswap= true;
+	for (int i = 0; i < length - 1; i++)
+	{
+		didswap = false;
+		for (int j = 0; j < length - 1 - i; j++)
+		{
+			if (nums[j + 1] < nums[j])
+			{
+				didswap = true;
+				swap(nums[j], nums[j + 1]);
+			}
+		}
+	}
+}
