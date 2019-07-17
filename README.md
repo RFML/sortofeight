@@ -136,7 +136,7 @@
 	
 分而治之：
 
-	![Image text](https://github.com/RFML/sortofeight/blob/master/images/分治图片.png)
+![Image text](https://github.com/RFML/sortofeight/blob/master/images/分治图片.png)
 	
 算法步骤
 
