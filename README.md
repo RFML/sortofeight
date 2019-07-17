@@ -135,6 +135,7 @@
 	各答案"修补"在一起，即分而治之)。
 	
 分而治之：
+
 	![Image text](https://github.com/RFML/sortofeight/blob/master/images/分治图片.png)
 	
 算法步骤
