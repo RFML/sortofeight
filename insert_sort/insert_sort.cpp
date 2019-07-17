@@ -60,7 +60,7 @@ void Insertsort1(vector<int >& nums,int length)
 		while(low<=hight)
 		{
 			int mid=(low+hight)>>1;
-			if(nums[mid]>current)
+			if(nums[mid]>current)        //用二分查找找插入的位置
 				hight=mid-1;
 			else
 				low=mid+1;
@@ -86,7 +86,7 @@ void Shellsort(vector<int >& nums,int length)
 	if (nums.size() < 2 || length < 2) return;
 	int Gap=1;
 	while(Gap<length/3)
-		Gap=Gap*3+1;
+		Gap=Gap*3+1;                  //计算增量
 	while(Gap>=1)
 	{
 		for(int i=Gap;i<length;i++)
