@@ -1,15 +1,18 @@
 #include<iostream>
 #include<vector>
+#include <algorithm>
 
 using namespace std;
 
 void Mergesort(vector<int >& nums, int start,int end);
 void MergeCore(vector<int >& nums, int L1, int L2, int r1, int r2);
+void Mergesort1(vector<int >& nums, int length);
 
 int main()
 {
-	vector<int > nums{ 3,5,2,6,7,9,1,4};
-	Mergesort(nums, 0,7);
+	vector<int > nums{ 3,5,2,6,7,9,1,4 };
+	//Mergesort(nums, 0,7);
+	Mergesort1(nums,nums.size());
 	for (auto iter : nums)
 		cout << iter << " ";
 	cout << endl;
@@ -70,28 +73,15 @@ void MergeCore(vector<int >& nums, int L1, int L2, int r1, int r2)
 稳定性：稳定
 *******************************/
 
-void Mergesort(vector<int >& nums, int length)
+void Mergesort1(vector<int >& nums, int length)
 {
 	if (nums.size() < 2 || length < 2) return;
-	for (int i = 1; i < length; i++)
+	for (int sz = 1; sz < length; sz += sz)                      //分支大小（1、2、4、8、16...）
 	{
-		int low = 0;
-		int hight = i - 1;
-		int current = nums[i];
-		while (low <= hight)
-		{
-			int mid = (low + hight) >> 1;
-			if (nums[mid] > current)
-				hight = mid - 1;
-			else
-				low = mid + 1;
+		for (int i = 0; i < length - sz; i += sz + sz)           //分支起点
+		{			
+			MergeCore(nums, i, i+sz, i+sz-1, min(i+2*sz-1,length-1));
 		}
-		for (int j = i; j > low; j--)
-		{
-			nums[j] = nums[j - 1];
-		}
-		nums[low] = current;
-
 	}
 }
 
