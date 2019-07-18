@@ -165,7 +165,7 @@
 	(2)设置两个变量left = 0;right = N - 1;
 	(3)从left一直向后走，直到找到一个大于key的值，right从后至前，直至找到一个小于key的值，然后交换这两个数。
 	(4)重复第三步，一直往后找，直到left和right相遇，这时将key放置left的位置即可。
-![Image text]https://github.com/RFML/sortofeight/blob/master/images/快速排序.jpg
+![Image text](https://github.com/RFML/sortofeight/blob/master/images/快速排序.jpg)
 
 时间复杂度和算法稳定性：
 	
