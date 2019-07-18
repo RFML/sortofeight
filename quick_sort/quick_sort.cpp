@@ -17,8 +17,16 @@ int main()
 	return 0;
 }
 
+/******************************
+名称：递归快速排序
+时间复杂度：O(N*logN)~O(N^2)
+空间复杂度：O(N*logN)
+稳定性：不稳定
+*******************************/
+
 void Quick_sort(vector<int > &nums, int low, int hight)
 {
+	if (hight <= low) return;
 	int pos;
 	if (low < hight)
 	{
@@ -30,7 +38,7 @@ void Quick_sort(vector<int > &nums, int low, int hight)
 
 int Find_pos(vector<int > &nums, int low, int height)
 {
-	int key = nums[height];
+	int key = nums[height];                   //如果key一直选到序列中最大或最小的数；快速排序效率很低
 	while (low < height)
 	{
 		while (low < height && nums[low] <= key)
