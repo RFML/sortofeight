@@ -6,6 +6,7 @@ using namespace std;
 
 void Quick_sort(vector<int > &nums, int low, int hight);
 int Find_pos(vector<int > &nums, int low, int height);
+int Find_pos1(vector<int > &nums, int low, int height);
 
 int main()
 {
@@ -38,6 +39,7 @@ void Quick_sort(vector<int > &nums, int low, int hight)
 
 int Find_pos(vector<int > &nums, int low, int height)
 {
+	//将基准数挖出；进行快速排序
 	int key = nums[height];                   //如果key一直选到序列中最大或最小的数；快速排序效率很低
 	while (low < height)
 	{
@@ -51,3 +53,39 @@ int Find_pos(vector<int > &nums, int low, int height)
 	nums[height] = key;
 	return height;
 }
+
+/******************************
+名称：优化快速排序（三数选中）
+时间复杂度：O(N*logN)~O(N^2)
+空间复杂度：O(N*logN)
+稳定性：不稳定
+*******************************/
+int Find_pos1(vector<int > &nums, int low, int height)
+{
+	int mid=(low+height)/2;
+	if(nums[height]>nums[low])
+		swap(nums[height],nums[low]);
+	if(nums[mid]>nums[low])
+		swap(nums[mid],nums[low]);
+	if(nums[mid]>nums[height])
+		swap(nums[height],nums[mid]);
+	
+	int key = nums[height];    //key值选取三数取中的一个；避免一直选到序列中最大或最小的数；使快速排序效率很低
+	while (low < height)
+	{
+		while (low < height && nums[low] <= key)
+			low++;
+		nums[height] = nums[low];
+		while (low < height && key <= nums[height])
+			height--;
+		nums[low] = nums[height];
+	}
+	nums[height] = key;
+	return height;
+}
+
+
+
+
+
+
